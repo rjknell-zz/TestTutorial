@@ -256,9 +256,38 @@ las = 2
 )
 ```
 
-Once again this boxplot gives us a great deal of information. You can clearly see the strong relationship between income group and per capita CO~2~ production, and you can also see from the asymmetric shape of the boxplots that the frequency distribution is somewhat positively skewed within each group, although not as strongly as when we plotted the whole variable by itself in the last section. This is something that we would need to bear in mind if we wished to analyse these data using, for example, ANOVA, which assumes that the error distribution within each group is normal. A further concern would arise from the increase in variance as the median gets larger --- you can see that the overall variation within the low income group is very small by comparison with the high income group, and again this *heteroscedasticity* would be a concern if we wished to analyse these data using ANOVA.
+Once again this boxplot gives us a great deal of information. See if you can answer these questions.
+
+```{r quiz, echo = FALSE}
+quiz(
+  question("What can you tell from the shape of the boxplots?",
+    answer("There is positive skew present within each income group", correct = TRUE),
+    answer("The dataset overall shows some skew but this is not apparent when each income group is considered separately", message = "The skew is apparent within each income group"),
+    answer("There is negative skew present within each income group", message = "Negative skew means the tail of the distribution extends towards the lower or negative values"),
+    answer("The errors are likely to follow a Poisson distribution", message = "Poisson distributions can give positive skew but Poisson distributions are for whole numbers only"),
+    answer("The errors are likely to follow a Normal distribution", message = "If the errors were normal the boxplots would be roughly symmetrical around the median")
+  ),
+  
+  question("Which of these statements are true?",
+    answer("CO2 production is caused by income", message = "Correlation does not imply causality... it could be that income and CO2 production are both linked to a third, underlying variable"),
+    answer("High incomes are associated with high CO2 production", correct = TRUE),
+    answer("The median CO2 production for Upper Middle Income countries is below the lower quartile for High Income countries", correct = TRUE),
+    answer("CO2 production is increasing with the square of national income", message = "We've not fitted any sort of predictive model so we can't draw any comclusions about the mathematical relationship between CO2 production and income")
+  ),
+    question("How does the variance change with income group?",
+    answer("Variance is roughly the same for each group, only the medians are increasing"),
+    answer("We can't tell anything about the variance because we've not calculated it", message = "It's true we've not explicitly calculated the variance but we can see how much spread there is in each group and big the IQRs are which gives an indication of the variance"),
+    answer("The variance is equal to the mean", message  = "This might be true if our data were Poisson distributed, but this is not the case here" ),
+    answer("Variance increases with the median CO2 production", correct = TRUE)
+  )
+)
+```
+
+
 
 ### Exercise: Log-transforming the y-axis
+
+When considering the CO~2~ production data in the last exercise, the asymmetric shape of the boxplots showed us that the frequency distribution is somewhat positively skewed within each group, although not as strongly as when we plotted the whole variable by itself in the last section. This is something that we would need to bear in mind if we wished to analyse these data using, for example, ANOVA, which assumes that the error distribution within each group is normal. A further concern would arise from the increase in variance as the median gets larger --- you can see that the overall variation within the low income group is very small by comparison with the high income group, and again this *heteroscedasticity* would be a concern if we wished to analyse these data using ANOVA.
 
 One possible solution to the skewed errors and heteroscedasticity in this dataset would be to log transform the data prior to analysis. Before doing this it would be a good idea to plot the data on a log scale to make sure that the transformation is making the data  behave as we'd like. There are several ways to do this in R: we could just log transform the variable, either before plotting it:
 
